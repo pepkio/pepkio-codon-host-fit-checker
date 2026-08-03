@@ -1,0 +1,39 @@
+[project]
+name = "pepkio-codon-host-fit-checker"
+version = "0.1.0"
+description = "Python client for Pepkio codon-host-fit-checker tool"
+readme = "README.md"
+authors = [
+    { name = "Pepkio", email = "support@pepkio.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "click>=8.0.0",
+    "httpx>=0.24.0",
+    "pydantic>=2.0.0",
+]
+
+[project.scripts]
+pepkio-codon-host-fit-checker = "pepkio_codon_host_fit_checker.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.11.14,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "python-dotenv>=1.0.0",
+    "ruff>=0.4.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
