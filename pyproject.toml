@@ -2,7 +2,7 @@
 name = "pepkio-codon-host-fit-checker"
 version = "0.1.0"
 description = "Python client for Pepkio codon-host-fit-checker tool"
-readme = "README.md"
+readme = "README_PYPI.md"
 authors = [
     { name = "Pepkio", email = "support@pepkio.com" }
 ]
