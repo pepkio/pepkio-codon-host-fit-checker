@@ -40,12 +40,18 @@ def main(ctx: click.Context, base_url: str, api_key: Optional[str], no_verify: b
 
 
 @main.command()
+@click.option("--examples", is_flag=True, help="List example names from the manifest")
 @click.pass_context
-def manifest(ctx: click.Context):
+def manifest(ctx: click.Context, examples: bool):
     """Fetch and display the tool manifest."""
     client: PepkioClient = ctx.obj["client"]
     try:
         manifest_data = client.get_manifest()
+        if examples:
+            for ex in manifest_data.get("examples", []):
+                if isinstance(ex, dict) and ex.get("name"):
+                    click.echo(ex["name"])
+            return
         click.echo(json.dumps(manifest_data, indent=2))
     except PepkioError as e:
         click.echo(f"Error: {e}", err=True)
